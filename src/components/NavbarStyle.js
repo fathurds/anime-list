@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
+export const ContainerNavbar = styled.div`
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -8,7 +8,7 @@ export const Container = styled.div`
     padding-right: 32px;
     display: flex;
     justify-content: space-between;
-    
+
     @media only screen and (min-width: 576px) {
         max-width: 540px;
     }
@@ -49,10 +49,3 @@ export const NavButton = styled.div`
     display: flex;
     gap: 1rem;
 `
-
-export const H4 = styled.h4(
-    props => ({
-        color: props.color,
-        cursor: props.pointer && 'pointer'
-    }),
-)

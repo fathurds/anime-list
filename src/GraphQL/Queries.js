@@ -15,6 +15,7 @@ export const TOP_AIRING_ANIME = gql`
           title {
             userPreferred
             romaji
+            english
           }
             genres
             averageScore
