@@ -1,15 +1,19 @@
 import React from 'react';
-import { Brand, Container, Header } from './NavbarStyle';
+import { Brand, Container, H4, Header, NavButton } from './NavbarStyle';
 
 function NavbarComponent() {
     return (
-        <Container>
-            <Header>
+        <Header>
+            <Container>
                 <Brand>
-                    Anime<span>Kita</span>
+                    Anime<span style={{ color: "#94B0F9" }}>Kita</span>
                 </Brand>
-            </Header>
-        </Container>
+                <NavButton>
+                    <H4 pointer>Home</H4>
+                    <H4 pointer>Collection</H4>
+                </NavButton>
+            </Container>
+        </Header>
     )
 }
 
