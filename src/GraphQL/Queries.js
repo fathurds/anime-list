@@ -30,61 +30,63 @@ export const TOP_AIRING_ANIME = gql`
     }
   `;
 
-export const ANIME_DETAIL = gql`
-    query {
-    Media(type: ANIME, id: 140960) {
-        id
-        title {
-        userPreferred
-        romaji
-        }
-        genres
-        averageScore
-        studios {
-        nodes {
-            name
-            isAnimationStudio
-        }
-        }
-        episodes
-        duration
-        status
-        format
-        startDate {
-        year
-        month
-        day
-        }
-        endDate {
-        year
-        month
-        day
-        }
-        description
-        coverImage {
-        large
-        }
-        bannerImage
-        characters (sort: ID role: MAIN, perPage: 6) {
-        edges {
-            voiceActors (language: JAPANESE) {
-            name {
-                full
+export const ANIME_DETAIL = (id) => {
+    return gql`
+        query {
+        Media(type: ANIME, id: ${id}) {
+            id
+            title {
+            userPreferred
+            romaji
             }
-            image {
-                medium
+            genres
+            averageScore
+            studios {
+            nodes {
+                name
+                isAnimationStudio
             }
             }
-            node {
-            name {
-                full
+            episodes
+            duration
+            status
+            format
+            startDate {
+            year
+            month
+            day
             }
-            image {
-                medium
+            endDate {
+            year
+            month
+            day
+            }
+            description
+            coverImage {
+            large
+            }
+            bannerImage
+            characters (sort: ID role: MAIN, perPage: 6) {
+            edges {
+                voiceActors (language: JAPANESE) {
+                name {
+                    full
+                }
+                image {
+                    medium
+                }
+                }
+                node {
+                name {
+                    full
+                }
+                image {
+                    medium
+                }
+                }
             }
             }
-        }
         }
     }
+    `;
 }
-`;
