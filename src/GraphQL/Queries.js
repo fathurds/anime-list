@@ -39,6 +39,7 @@ export const ANIME_DETAIL = (id) => {
             title {
             userPreferred
             romaji
+            english
             }
             genres
             averageScore
@@ -64,7 +65,7 @@ export const ANIME_DETAIL = (id) => {
             }
             description
             coverImage {
-            large
+              large
             }
             bannerImage
             characters (sort: ID role: MAIN, perPage: 6) {

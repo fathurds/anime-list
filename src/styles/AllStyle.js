@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
 
+const breakpoints = [576, 768, 992, 1200];
+
+const mq = breakpoints.map(
+    bp => `@media (min-width: ${bp}px)`
+)
+
 export const Body = styled.div(
     {
         backgroundColor: "#EDF3FF",
@@ -7,26 +13,33 @@ export const Body = styled.div(
     }
 )
 
-export const Container = styled.div`
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 32px;
-    padding-right: 32px;
+export const Container = styled.div(
+    props => ({
+        width: "100%",
+        margin: "0 auto",
+        padding: "0 20px",
+        minWidth: "320px",
+        [mq[0]]: {
+            maxWidth: "540px"
+        },
+        [mq[1]]: {
+            maxWidth: "720px"
+        },
+        [mq[2]]: {
+            maxWidth: "960px"
+        },
+        [mq[3]]: {
+            maxWidth: "1140px"
+        },
+        display: props.display
+    })
+)
 
-    @media only screen and (min-width: 576px) {
-        max-width: 540px;
+export const H3 = styled.h3(
+    {
+        color: "#606060",
     }
-    @media only screen and (min-width: 768px) {
-        max-width: 720px;
-    }
-    @media only screen and (min-width: 992px) {
-        max-width: 960px;
-    }
-    @media only screen and (min-width: 1200px) {
-        max-width: 1140px
-    }
-`
+)
 
 export const H4 = styled.h4(
     props => ({
@@ -63,4 +76,20 @@ export const Flex = styled.div(
         marginLeft: "auto",
         marginRight: "auto"
     })
+)
+
+export const Button = styled.button(
+    {
+        backgroundColor: "#749BFF",
+        color: "white",
+        border: 0,
+        padding: "8px 40px",
+        borderRadius: "0.5rem",
+        transitionProperty: "all",
+        transitionDuration: "150ms",
+        cursor: "pointer",
+        '&:hover': {
+            opacity: "0.8"
+        }
+    }
 )
