@@ -53,6 +53,7 @@ export const H5 = styled.h5(
         color: "#606060",
         margin: 0,
         textAlign: props.align,
+        alignSelf: props.bottom && 'flex-end'
     })
 )
 
@@ -76,20 +77,4 @@ export const Flex = styled.div(
         marginLeft: "auto",
         marginRight: "auto"
     })
-)
-
-export const Button = styled.button(
-    {
-        backgroundColor: "#749BFF",
-        color: "white",
-        border: 0,
-        padding: "8px 40px",
-        borderRadius: "0.5rem",
-        transitionProperty: "all",
-        transitionDuration: "150ms",
-        cursor: "pointer",
-        '&:hover': {
-            opacity: "0.8"
-        }
-    }
 )

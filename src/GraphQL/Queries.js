@@ -32,7 +32,7 @@ export const TOP_AIRING_ANIME = gql`
   `;
 
 export const ANIME_DETAIL = (id) => {
-    return gql`
+  return gql`
         query {
         Media(type: ANIME, id: ${id}) {
             id
@@ -44,10 +44,12 @@ export const ANIME_DETAIL = (id) => {
             genres
             averageScore
             studios {
-            nodes {
-                name
-                isAnimationStudio
-            }
+              edges {
+                node {
+                  name
+                }
+                isMain
+              }
             }
             episodes
             duration
@@ -70,7 +72,7 @@ export const ANIME_DETAIL = (id) => {
             bannerImage
             characters (sort: ID role: MAIN, perPage: 6) {
             edges {
-                voiceActors (language: JAPANESE) {
+                voiceActors (language: JAPANESE, sort: ROLE) {
                 name {
                     full
                 }

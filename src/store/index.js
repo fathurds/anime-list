@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import detailReducer from './detail/detail';
+import collectionReducer from './collection/collection';
 
 export default configureStore({
     reducer: {
-        detail: detailReducer
+        collection: collectionReducer
     }
 })
