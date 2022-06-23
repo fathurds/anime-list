@@ -7,12 +7,12 @@ export const collectionSlice = createSlice({
     },
     reducers: {
         setNewCollectionRedux: (state, action) => {
-
             let temp;
             state.collection.map((el, i) => {
                 if (el.name === action.payload.name) {
                     temp = i;
                 }
+                return '';
             })
             if (temp >= 0) {
                 state.collection.splice(temp, 1);

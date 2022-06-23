@@ -295,3 +295,44 @@ export const ListStyle = styled.li(
         }
     }
 )
+
+export const BtnSubmit = styled.button(
+    {
+        width: "100%",
+        backgroundColor: "#749BFF",
+        color: "white",
+        border: 0,
+        padding: "8px 40px",
+        marginTop: "10px",
+        borderRadius: "0.5rem",
+        transitionProperty: "all",
+        transitionDuration: "150ms",
+        cursor: "pointer",
+        '&:hover': {
+            opacity: "0.8"
+        },
+    }
+)
+
+// export const Button = styled.button(
+//     props => ({
+//         display: props.mobile ? "inline" : "none",
+//         backgroundColor: "#749BFF",
+//         color: "white",
+//         width: "95%",
+        // border: 0,
+        // padding: "8px 40px",
+        // borderRadius: "0.5rem",
+//         transitionProperty: "all",
+//         transitionDuration: "150ms",
+//         marginLeft: props.mobile && "10px",
+//         cursor: "pointer",
+//         '&:hover': {
+//             opacity: "0.8"
+//         },
+//         [mq[1]]: {
+//             display: props.mobile ? "none" : "inline",
+//             width: "100%"
+//         },
+//     })
+// )

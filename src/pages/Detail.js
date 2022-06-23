@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useQuery } from "@apollo/client";
 import { ANIME_DETAIL } from '../GraphQL/Queries'
 import { useParams } from 'react-router-dom';
-import { Container, Banner, CoverComponent, CoverWarp, HeaderDetail, Img, TitleWrap, DescriptionWrap, Button, ContentWrap, InformationWrap, H4, FlexInfor, H3, CharWrap, CharCard, CharCover, BgModal, Modal, ModalHeader, Svg, BtnDropdown, ListDropdown, ListStyle } from '../styles/DetailStyle';
+import { Container, Banner, CoverComponent, CoverWarp, HeaderDetail, Img, TitleWrap, DescriptionWrap, Button, ContentWrap, InformationWrap, H4, FlexInfor, H3, CharWrap, CharCard, CharCover, BgModal, Modal, ModalHeader, Svg, BtnDropdown, ListDropdown, ListStyle, BtnSubmit } from '../styles/DetailStyle';
 import { H2, H5 } from '../styles/AllStyle';
 import { useSelector, useDispatch } from 'react-redux';
 import { setNewCollectionRedux } from '../store/collection/collection';
+import Swal from 'sweetalert2';
 
 function Detail() {
     const [anime, setAnime] = useState([]);
@@ -44,6 +45,18 @@ function Detail() {
         }
     }, [data, collection, anime]);
 
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
     // ADD NEW COLLECTION
     const handleSubmitNew = () => {
         const addNewCollection = {
@@ -63,11 +76,19 @@ function Detail() {
 
         if (collection.length === 0) {
             dispatch(setNewCollectionRedux(addNewCollection));
-            setDisplayCollection('none')
+            setDisplayCollection('none');
+            Toast.fire({
+                icon: 'success',
+                title: `${title} has been successfully added to ${newCollection}`
+            })
         } else if (unique) {
             arrayCollection.push(addNewCollection);
             dispatch(setNewCollectionRedux(addNewCollection));
-            setDisplayCollection('none')
+            setDisplayCollection('none');
+            Toast.fire({
+                icon: 'success',
+                title: `${title} has been successfully added to ${newCollection}`
+            })
         } else {
             console.log("Koleksi sudah ada");
         }
@@ -76,18 +97,14 @@ function Detail() {
 
     // ADD TO LIST COLLECTION
     const handleSubmit = (name) => {
-        let selectedCollection;
         let selectedAnime;
         let selectedImage;
-        let temp;
         collection.map((el, i) => {
             if (el.name.toLowerCase() === name.toLowerCase()) {
-                selectedCollection = el;
                 selectedAnime = el.anime;
                 selectedImage = el.image;
-                temp = i;
             }
-            return;
+            return '';
         })
 
         let newSelectedAnime = selectedAnime.map(el => el)
@@ -102,6 +119,10 @@ function Detail() {
 
         dispatch(setNewCollectionRedux(addNewCollection));
         setDisplayCollection('none')
+        Toast.fire({
+            icon: 'success',
+            title: `${title} has been successfully added to ${name}`
+        })
     }
 
     const ref = useRef(null);
@@ -285,13 +306,13 @@ function Detail() {
                             ))}
                         </ListDropdown>
 
-                        <button onClick={() => {
+                        <BtnSubmit onClick={() => {
                             if (checkCollection === 'new') {
                                 handleSubmitNew();
                             } else {
                                 handleSubmit(listDropdown);
                             }
-                        }}>Submit</button>
+                        }}>Submit</BtnSubmit>
                     </Modal>
                 </BgModal>
             </Container>

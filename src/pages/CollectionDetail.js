@@ -1,46 +1,75 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Container, Flex, H1, H2, H5 } from '../styles/AllStyle';
 import { Content, Img, Card, ImgWrap, TextWrap } from '../styles/HomeStyle';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { Button, ButtonWrap, TitleWrap } from '../styles/CollectionStyle';
 import { BgModal, Modal, ModalHeader, Svg } from '../styles/DetailStyle';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setNewCollectionRedux } from '../store/collection/collection';
 
-function CollectionList() {
+function CollectionDetail() {
 
-    const anime = useSelector(state => state.collection.collection);
-
-    const [display, setDisplay] = useState('none')
+    const [anime, setAnime] = useState([]);
+    const [title, setTitle] = useState('');
+    const [image, setImage] = useState('');
+    const [display, setDisplay] = useState('none');
     const [temp, setTemp] = useState();
 
+    const { id } = useParams();
+
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        let collection = JSON.parse(localStorage.getItem('collection'));
+
+        if (collection) {
+            collection.map(el => {
+                if (id === el.name) {
+                    setAnime(el.anime);
+                    setTitle(el.name);
+                    setImage(el.image);
+                }
+                return ''
+            })
+        }
+
+    }, [id])
 
     const handleRemove = (i, anime) => {
         let arrayForDelete = [...anime];
         arrayForDelete.splice(i, 1);
-        localStorage.setItem('collection', JSON.stringify(arrayForDelete));
-        setDisplay('none');
 
+        const newArray = {
+            anime: arrayForDelete,
+            name: id,
+            image
+        }
+        console.log(newArray)
+
+        dispatch(setNewCollectionRedux(newArray))
+
+        setDisplay('none');
         window.location.reload();
     }
 
     const ref = useRef(null);
-
     return (
         <Content ref={ref}>
+            {console.log(anime)}
             <Container>
                 <TitleWrap>
-                    <H2 collection>Collection List</H2>
-                    <Button>Add Collection</Button>
+                    <H2 collection>{title}</H2>
                 </TitleWrap>
                 <Flex justifyContent='space-evenly'>
                     {anime.map((el, i) => (
                         <Card key={i} >
-                            <ImgWrap onClick={() => navigate(`/collection/${el.name}`)}>
-                                <Img src={el.image} alt="" />
+                            <ImgWrap onClick={() => navigate(`/anime/${el.id}`)}>
+                                <Img src={el.coverImage.large} alt="" />
                             </ImgWrap>
                             <TextWrap>
-                                <H5>{el.name}</H5>
+                                <H5>{el.title.english ? el.title.english : el.title.romaji}</H5>
                             </TextWrap>
                             <Button danger onClick={() => {
                                 ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -67,7 +96,7 @@ function CollectionList() {
                             <p>You won't be able to revert this!</p>
                             <ButtonWrap>
                                 <Button danger style={{ width: "150px" }} onClick={() => handleRemove(temp, anime)}>Yes, delete it</Button>
-                                <Button onClick={() => setDisplay('none')}>Cancel</Button>
+                                <Button>Cancel</Button>
                             </ButtonWrap>
                         </div>
                     </Modal>
@@ -77,4 +106,4 @@ function CollectionList() {
     )
 }
 
-export default CollectionList
+export default CollectionDetail
