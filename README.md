@@ -2,7 +2,7 @@
 
 Project ini saya beri nama dari nama saya sendiri. Alasan dari dibuatnya project ini adalah untuk memperdalam penggunaan GraphQL dan penggunaan CSS in JS menggunakan emotion.
 
-https://fath-anime.vercel.app/
+https://animekita.vercel.app/
 
 ## Fath Anime
 
