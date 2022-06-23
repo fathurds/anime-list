@@ -1,70 +1,19 @@
-# Getting Started with Create React App
+# Anime Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project ini saya beri nama dari nama saya sendiri. Alasan dari dibuatnya project ini adalah untuk memperdalam penggunaan GraphQL dan penggunaan CSS in JS menggunakan emotion.
 
-## Available Scripts
+https://fath-anime.vercel.app/
 
-In the project directory, you can run:
+## Fath Anime
 
-### `npm start`
+Web ini saya buat menggunakan framework ReactJS. Di project ini juga saya gunakan untuk belajar menggunakan CSS in JS yaitu menggunakan [Emotion](https://emotion.sh/). Popup yang saya buat di sini secara manual, tetapi ada beberapa popup yang menggunakan [SweetAlert2](https://sweetalert2.github.io/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Keterangan
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Web ini memiliki beberapa fitur, diantaranya:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Top Airing Anime yang berada pada halaman Home yang berisi tentang Anime yang tayang pada musim ini.
+2. Halaman Detail Anime yang berisi tentang penjelasan mulai dari nama, tanggal rilis, dll. Kita dapat masuk halaman ini melalui Home atau dengan fitur search.
+3. Halaman ini memiliki tombol "Add to Collection" di tiap halaman detail anime untuk memasukan ke koleksi kita. Akan terdapat 2 pilihan dalam menambahkan koleksi, yaitu menambah koleksi baru atau menggunakan koleksi yang sudah dibuat sebelumnya.
+4. Pada halaman Collection berisi nama-nama koleksi yang kita buat. Ketika kita memilih salah satunya, akan masuk ke halaman baru yang berisi tentang list anime yang ada di koleksi tersebut. Di sini juga kita bisa menghapus koleksi ataupun anime yang tidak kita inginkan.
+5. Pada halaman home, kita bisa memasukan teks untuk melakukan search. Akan selalu ada anime terupdate. Ketika kata kunci yang kita masukan memiliki daftar anime lebih dari 10, kita dapat menggunakan tombol next untuk ke halaman berikutnya.
