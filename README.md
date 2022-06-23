@@ -17,3 +17,4 @@ Web ini memiliki beberapa fitur, diantaranya:
 3. Halaman ini memiliki tombol "Add to Collection" di tiap halaman detail anime untuk memasukan ke koleksi kita. Akan terdapat 2 pilihan dalam menambahkan koleksi, yaitu menambah koleksi baru atau menggunakan koleksi yang sudah dibuat sebelumnya.
 4. Pada halaman Collection berisi nama-nama koleksi yang kita buat. Ketika kita memilih salah satunya, akan masuk ke halaman baru yang berisi tentang list anime yang ada di koleksi tersebut. Di sini juga kita bisa menghapus koleksi ataupun anime yang tidak kita inginkan.
 5. Pada halaman home, kita bisa memasukan teks untuk melakukan search. Akan selalu ada anime terupdate. Ketika kata kunci yang kita masukan memiliki daftar anime lebih dari 10, kita dapat menggunakan tombol next untuk ke halaman berikutnya.
+
