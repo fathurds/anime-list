@@ -22,6 +22,9 @@ function CollectionDetail() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (title.length > 0) {
+            document.title = `${title} | AnimeKita`
+        }
         let collection = JSON.parse(localStorage.getItem('collection'));
 
         if (collection) {
@@ -35,7 +38,7 @@ function CollectionDetail() {
             })
         }
 
-    }, [id])
+    }, [id, title])
 
     const handleRemove = (i, anime) => {
         let arrayForDelete = [...anime];
@@ -46,7 +49,6 @@ function CollectionDetail() {
             name: id,
             image
         }
-        console.log(newArray)
 
         dispatch(setNewCollectionRedux(newArray))
 
@@ -57,7 +59,6 @@ function CollectionDetail() {
     const ref = useRef(null);
     return (
         <Content ref={ref}>
-            {console.log(anime)}
             <Container>
                 <TitleWrap>
                     <H2 collection>{title}</H2>

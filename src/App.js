@@ -5,6 +5,7 @@ import NavbarComponent from './components/Navbar';
 import { Body } from './styles/AllStyle'
 import CollectionList from './pages/CollectionList';
 import CollectionDetail from './pages/CollectionDetail';
+import SearchComponent from './pages/Search';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='anime/:id' element={<Detail />} />
           <Route path='collection' element={<CollectionList />} />
           <Route path='collection/:id' element={<CollectionDetail />} />
+          <Route path='search' element={<SearchComponent />} />
         </Routes>
       </Body>
     </BrowserRouter>

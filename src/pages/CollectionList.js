@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Container, Flex, H1, H2, H5 } from '../styles/AllStyle';
 import { Content, Img, Card, ImgWrap, TextWrap } from '../styles/HomeStyle';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +14,10 @@ function CollectionList() {
     const [temp, setTemp] = useState();
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = "Collection | AnimeKita"
+    }, [])
 
     const handleRemove = (i, anime) => {
         let arrayForDelete = [...anime];
