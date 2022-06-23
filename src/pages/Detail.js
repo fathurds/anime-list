@@ -32,7 +32,9 @@ function Detail() {
     const { loading, data } = useQuery(ANIME_DETAIL(id));
 
     useEffect(() => {
-        console.log(collection)
+        if (title) {
+            document.title = `${title}| AnimeKita`
+        }
         const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         if (data) {
             setAnime(data.Media);
@@ -43,7 +45,7 @@ function Detail() {
             setStudio(data.Media.studios.edges);
             setCharacter(data.Media.characters.edges)
         }
-    }, [data, collection, anime]);
+    }, [data, title, anime]);
 
     const Toast = Swal.mixin({
         toast: true,

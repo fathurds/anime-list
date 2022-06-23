@@ -91,3 +91,32 @@ export const ANIME_DETAIL = (id) => {
     }
     `;
 }
+
+export const SEARCH_ANIME = (search, page) => {
+  return gql`
+    query {
+      Page (perPage: 10, page: ${page}) {
+        pageInfo {
+          total
+          currentPage
+          lastPage
+          hasNextPage
+          perPage
+        }
+        media(type: ANIME, sort: SCORE_DESC, isAdult: false, search: "${search}") {
+          id
+          title {
+            userPreferred
+            romaji
+          }
+          genres
+          averageScore
+          episodes
+          coverImage {
+            large
+          }
+        }
+    }
+  }
+  `
+}

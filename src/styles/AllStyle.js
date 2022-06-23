@@ -36,9 +36,10 @@ export const Container = styled.div(
 )
 
 export const H3 = styled.h3(
-    {
+    props => ({
         color: "#606060",
-    }
+        margin: props.home && '0px'
+    })
 )
 
 export const H4 = styled.h4(

@@ -57,3 +57,45 @@ export const TextWrap = styled.div(
         padding: "10px"
     }
 )
+
+export const Search = styled.div(
+    {
+        display: "flex",
+        justifyContent: "center",
+        gap: "1rem"
+    }
+)
+
+export const SearchInput = styled.input(
+    {
+        width: "100%",
+        borderRadius: "10px",
+        padding: "5px 10px",
+        borderWidth: "1px",
+        borderColor: "#cbd5e1",
+        "&:hover": {
+            borderColor: "#749BFF"
+        },
+        "&:focus": {
+            borderColor: "#749BFF",
+            outlineColor: "#749BFF"
+        }
+    }
+)
+
+export const BtnSearch = styled.button(
+    {
+        backgroundColor: "#749BFF",
+        color: "white",
+        width: "150px",
+        border: 0,
+        padding: "8px 0px",
+        borderRadius: "0.5rem",
+        transitionProperty: "all",
+        transitionDuration: "150ms",
+        cursor: "pointer",
+        '&:hover': {
+            opacity: "0.8"
+        },
+    }
+)
