@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Banner, CoverComponent, CoverWarp, HeaderDetail, Img, TitleWrap, DescriptionWrap, Button, ContentWrap, InformationWrap, H4, FlexInfor, H3, CharWrap, CharCard, CharCover, BgModal, Modal, ModalHeader, Svg, BtnDropdown, ListDropdown, ListStyle } from '../styles/DetailStyle';
 import { H2, H5 } from '../styles/AllStyle';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCollection } from '../store/collection/collection';
+import { setNewCollectionRedux } from '../store/collection/collection';
 
 function Detail() {
     const [anime, setAnime] = useState([]);
@@ -42,70 +42,66 @@ function Detail() {
             setStudio(data.Media.studios.edges);
             setCharacter(data.Media.characters.edges)
         }
-    }, [data, collection]);
+    }, [data, collection, anime]);
 
     // ADD NEW COLLECTION
     const handleSubmitNew = () => {
-        const unique = collection.map(el => {
-            if (el.name.toLowerCase() === newCollection.toLowerCase()) {
-                return true;
-            } else {
-                return false;
-            }
-        })
-
-        if (newCollection.length > 0 && unique.indexOf(true) < 0) {
-            const collectionData = {
-                name: newCollection,
-                anime: [anime],
-                image: coverImage
-            }
-            dispatch(setCollection(collectionData));
-        } else {
-            console.log("error");
+        const addNewCollection = {
+            name: newCollection,
+            image: coverImage,
+            anime: [anime]
         }
 
-        setDisplayCollection('none');
-        setNewCollection('');
+        let unique = true;
+
+        let arrayCollection = collection.map(el => {
+            if (el.name.toLowerCase() === newCollection.toLowerCase()) {
+                unique = false;
+            }
+            return el;
+        })
+
+        if (collection.length === 0) {
+            dispatch(setNewCollectionRedux(addNewCollection));
+            setDisplayCollection('none')
+        } else if (unique) {
+            arrayCollection.push(addNewCollection);
+            dispatch(setNewCollectionRedux(addNewCollection));
+            setDisplayCollection('none')
+        } else {
+            console.log("Koleksi sudah ada");
+        }
+
     }
 
     // ADD TO LIST COLLECTION
     const handleSubmit = (name) => {
-        let listCollection = [];
-        let list = [];
-        let image;
-        let tempArray = [];
+        let selectedCollection;
+        let selectedAnime;
+        let selectedImage;
         let temp;
-
-        collection.forEach((item, i) => {
-            if (name.toLowerCase() === item.name.toLowerCase()) {
-                list = item;
-                image = item.image;
-                listCollection = item.anime;
+        collection.map((el, i) => {
+            if (el.name.toLowerCase() === name.toLowerCase()) {
+                selectedCollection = el;
+                selectedAnime = el.anime;
+                selectedImage = el.image;
                 temp = i;
             }
-            tempArray.push(item);
+            return;
         })
 
-        let listAnime = [];
+        let newSelectedAnime = selectedAnime.map(el => el)
 
-        listCollection.map(el => {
-            listAnime.push(el);
-        })
+        newSelectedAnime.push(anime);
 
-        listAnime.push(anime);
-
-        list = {
-            ...list,
-            anime: listAnime,
+        const addNewCollection = {
             name,
-            image
+            image: selectedImage,
+            anime: newSelectedAnime
         }
 
-        tempArray.push(list);
-        tempArray.splice(temp, 1);
-        localStorage.setItem('collection', JSON.stringify(tempArray));
-        console.log(JSON.parse(localStorage.getItem('collection')));
+        dispatch(setNewCollectionRedux(addNewCollection));
+        setDisplayCollection('none')
     }
 
     const ref = useRef(null);

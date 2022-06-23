@@ -58,15 +58,17 @@ export const H5 = styled.h5(
 )
 
 export const H2 = styled.h2(
-    {
-        color: "#606060"
-    }
+    props => ({
+        color: "#606060",
+        margin: props.collection && '0px'
+    })
 )
 
 export const H1 = styled.h1(
-    {
-        color: "#606060"
-    }
+    props => ({
+        color: "#606060",
+        margin: props.collection && '0px'
+    })
 )
 
 export const Flex = styled.div(

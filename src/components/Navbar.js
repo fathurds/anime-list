@@ -14,7 +14,7 @@ function NavbarComponent() {
                 </Brand>
                 <NavButton>
                     <H4 pointer onClick={() => navigate('/')}>Home</H4>
-                    <H4 pointer onClick={() => navigate('/')}>Collection</H4>
+                    <H4 pointer onClick={() => navigate('/collection')}>Collection</H4>
                 </NavButton>
             </ContainerNavbar>
         </Header>

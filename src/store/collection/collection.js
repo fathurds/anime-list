@@ -6,12 +6,22 @@ export const collectionSlice = createSlice({
         collection: localStorage.getItem('collection') ? JSON.parse(localStorage.getItem('collection')) : [],
     },
     reducers: {
-        setNewCollection: (state, action) => {
+        setNewCollectionRedux: (state, action) => {
+
+            let temp;
+            state.collection.map((el, i) => {
+                if (el.name === action.payload.name) {
+                    temp = i;
+                }
+            })
+            if (temp >= 0) {
+                state.collection.splice(temp, 1);
+            }
             state.collection.push(action.payload);
             localStorage.setItem('collection', JSON.stringify(state.collection));
         }
     }
 })
 
-export const { setCollection, setNewCollection } = collectionSlice.actions;
+export const { setNewCollectionRedux } = collectionSlice.actions;
 export default collectionSlice.reducer;

@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Detail from './pages/Detail';
 import NavbarComponent from './components/Navbar';
 import { Body } from './styles/AllStyle'
+import CollectionList from './pages/CollectionList';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='anime/:id' element={<Detail />} />
+          <Route path='collection' element={<CollectionList />} />
         </Routes>
       </Body>
     </BrowserRouter>
