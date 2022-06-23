@@ -44,18 +44,68 @@ function Detail() {
         }
     }, [data, collection]);
 
-    const handleSubmit = () => {
-        if (newCollection.length > 0) {
-            const collection = {
-                name: newCollection,
-                anime: [anime]
+    // ADD NEW COLLECTION
+    const handleSubmitNew = () => {
+        const unique = collection.map(el => {
+            if (el.name.toLowerCase() === newCollection.toLowerCase()) {
+                return true;
+            } else {
+                return false;
             }
-            dispatch(setCollection(collection));
-            setDisplayCollection('none');
-            setNewCollection('');
+        })
+
+        if (newCollection.length > 0 && unique.indexOf(true) < 0) {
+            const collectionData = {
+                name: newCollection,
+                anime: [anime],
+                image: coverImage
+            }
+            dispatch(setCollection(collectionData));
         } else {
-            console.log("error")
+            console.log("error");
         }
+
+        setDisplayCollection('none');
+        setNewCollection('');
+    }
+
+    // ADD TO LIST COLLECTION
+    const handleSubmit = (name) => {
+        let listCollection = [];
+        let list = [];
+        let image;
+        let tempArray = [];
+        let temp;
+
+        collection.forEach((item, i) => {
+            if (name.toLowerCase() === item.name.toLowerCase()) {
+                list = item;
+                image = item.image;
+                listCollection = item.anime;
+                temp = i;
+            }
+            tempArray.push(item);
+        })
+
+        let listAnime = [];
+
+        listCollection.map(el => {
+            listAnime.push(el);
+        })
+
+        listAnime.push(anime);
+
+        list = {
+            ...list,
+            anime: listAnime,
+            name,
+            image
+        }
+
+        tempArray.push(list);
+        tempArray.splice(temp, 1);
+        localStorage.setItem('collection', JSON.stringify(tempArray));
+        console.log(JSON.parse(localStorage.getItem('collection')));
     }
 
     const ref = useRef(null);
@@ -239,7 +289,13 @@ function Detail() {
                             ))}
                         </ListDropdown>
 
-                        <button onClick={() => handleSubmit()}>Submit</button>
+                        <button onClick={() => {
+                            if (checkCollection === 'new') {
+                                handleSubmitNew();
+                            } else {
+                                handleSubmit(listDropdown);
+                            }
+                        }}>Submit</button>
                     </Modal>
                 </BgModal>
             </Container>

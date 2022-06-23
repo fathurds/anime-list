@@ -21,10 +21,7 @@ export const TOP_AIRING_ANIME = gql`
             averageScore
             episodes
           coverImage {
-            extraLarge
             large
-            medium
-            color
           }
         }
       }

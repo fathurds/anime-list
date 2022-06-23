@@ -6,12 +6,12 @@ export const collectionSlice = createSlice({
         collection: localStorage.getItem('collection') ? JSON.parse(localStorage.getItem('collection')) : [],
     },
     reducers: {
-        setCollection: (state, action) => {
+        setNewCollection: (state, action) => {
             state.collection.push(action.payload);
             localStorage.setItem('collection', JSON.stringify(state.collection));
         }
     }
 })
 
-export const { setCollection } = collectionSlice.actions;
+export const { setCollection, setNewCollection } = collectionSlice.actions;
 export default collectionSlice.reducer;
